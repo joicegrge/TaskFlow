@@ -1,0 +1,30 @@
+<section class="settings-page">
+  <header class="page-heading">
+    <div>
+      <p class="eyebrow">PREFERENCES</p>
+      <h1>Settings</h1>
+      <p class="page-description">View your profile information for this workspace.</p>
+    </div>
+  </header>
+
+  <section class="profile-card" aria-labelledby="profile-title">
+    <header class="profile-heading">
+      <div class="profile-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6" />
+          <path d="M5.7 19c.8-3.1 3.1-4.7 6.3-4.7s5.5 1.6 6.3 4.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div>
+        <h2 id="profile-title">User profile</h2>
+        <p>Your account information</p>
+      </div>
+    </header>
+
+    <div class="profile-divider"></div>
+    <div class="profile-field">
+      <span class="field-label">Name</span>
+      <span class="field-value">{{ state.userName() }}</span>
+    </div>
+  </section>
+</section>

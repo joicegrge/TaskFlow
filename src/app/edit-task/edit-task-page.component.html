@@ -1,0 +1,36 @@
+<section class="page-card">
+  <a class="back-link" routerLink="/tasks"><span aria-hidden="true">←</span> Back to tasks</a>
+  <div class="form-heading"><p class="eyebrow">TASK MANAGEMENT</p><h1>Edit task</h1><p>Update the details and status for this task.</p></div>
+  @if (state.isLoading()) {
+    <p class="loading-message" role="status">Loading task…</p>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="field-group">
+        <label for="task-title">Task title</label>
+        <input id="task-title" type="text" formControlName="title" autocomplete="off" [class.invalid]="form.controls.title.touched && form.controls.title.invalid" [attr.aria-invalid]="form.controls.title.touched && form.controls.title.invalid" aria-describedby="title-error" />
+        @if (form.controls.title.touched && form.controls.title.hasError('required')) {
+          <small id="title-error" class="validation-message">Task title is required.</small>
+        } @else if (form.controls.title.touched && form.controls.title.hasError('pattern')) {
+          <small id="title-error" class="validation-message">Enter at least one non-space character.</small>
+        }
+      </div>
+      <div class="field-group">
+        <label for="task-due-date">Due date</label>
+        <input id="task-due-date" type="date" formControlName="dueDate" [class.invalid]="form.controls.dueDate.touched && form.controls.dueDate.invalid" [attr.aria-invalid]="form.controls.dueDate.touched && form.controls.dueDate.invalid" aria-describedby="due-date-error" />
+        @if (form.controls.dueDate.touched && form.controls.dueDate.hasError('required')) {
+          <small id="due-date-error" class="validation-message">Choose a due date.</small>
+        } @else if (form.controls.dueDate.touched && form.controls.dueDate.hasError('pattern')) {
+          <small id="due-date-error" class="validation-message">Enter a valid date.</small>
+        }
+      </div>
+      <div class="field-group">
+        <label for="task-status">Status</label>
+        <select id="task-status" formControlName="status"><option value="Open">Open</option><option value="Done">Done</option></select>
+      </div>
+      <div class="actions">
+        <a class="cancel-button" routerLink="/tasks">Cancel</a>
+        <button class="save-button" type="submit">Save changes</button>
+      </div>
+    </form>
+  }
+</section>

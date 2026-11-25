@@ -1,0 +1,28 @@
+<section class="details-panel">
+  @if (task(); as selectedTask) {
+    <header class="details-heading">
+      <div><p class="eyebrow">TASK DETAILS</p><h2>{{ selectedTask.title }}</h2></div>
+      <span class="status" [class.done]="selectedTask.status === 'Done'">{{ selectedTask.status }}</span>
+    </header>
+    <p class="description">{{ selectedTask.description }}</p>
+    <div class="detail-divider"></div>
+    <div class="due-summary"><span>Due date</span><strong>{{ selectedTask.dueDate | date: 'MMMM d, y' : 'UTC' }}</strong></div>
+    <div class="detail-actions">
+      <a class="action-button edit-link" [routerLink]="['/tasks', selectedTask.id, 'edit']">Edit task <span aria-hidden="true">→</span></a>
+      @if (selectedTask.status === 'Open') {
+        <button class="action-button done-button" type="button" (click)="markDone.emit(selectedTask.id)">
+          <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="m4.5 10.2 3.7 3.7 7.4-7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          Mark as done
+        </button>
+      } @else {
+        <span class="completed-indicator"><span aria-hidden="true">✓</span> Completed</span>
+      }
+    </div>
+  } @else {
+    <div class="detail-empty">
+      <span class="detail-empty-icon" aria-hidden="true">↖</span>
+      <strong>Select a task</strong>
+      <span>Choose a task from the list to see its details here.</span>
+    </div>
+  }
+</section>

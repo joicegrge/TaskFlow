@@ -1,0 +1,38 @@
+<section class="task-list-panel" [class.compact-panel]="compact()">
+  <header class="list-heading">
+    <h2>Tasks</h2>
+    <span>{{ tasks().length }} {{ tasks().length === 1 ? 'task' : 'tasks' }}</span>
+  </header>
+  <div class="task-rows">
+    @for (task of tasks(); track task.id) {
+      <button
+        class="task-row"
+        type="button"
+        [class.selected]="task.id === selectedTaskId()"
+        [class.compact]="compact()"
+        [attr.aria-pressed]="task.id === selectedTaskId()"
+        (click)="taskSelected.emit(task.id)"
+      >
+        <span class="task-main">
+          <span class="task-title">{{ task.title }}</span>
+          <span class="task-description">{{ task.description }}</span>
+          <span class="task-meta">
+            <span class="status" [class.done]="task.status === 'Done'">{{ task.status }}</span>
+            <span class="due-date" [class.is-overdue]="isOverdue(task)">
+              @if (isOverdue(task)) { <span class="overdue-dot" aria-hidden="true"></span> }
+              {{ task.dueDate | date: 'MMM d, y' : 'UTC' }}
+            </span>
+            @if (isOverdue(task)) { <span class="overdue-label">Overdue</span> }
+          </span>
+        </span>
+        <span class="row-arrow" aria-hidden="true">›</span>
+      </button>
+    } @empty {
+      <div class="empty-state">
+        <span class="empty-icon" aria-hidden="true">⌕</span>
+        <strong>No tasks found</strong>
+        <span>Try another search or status filter.</span>
+      </div>
+    }
+  </div>
+</section>

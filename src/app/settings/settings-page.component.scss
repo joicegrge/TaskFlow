@@ -1,0 +1,16 @@
+.settings-page { width: min(100%, 880px); margin-inline: auto; }
+.page-heading { margin-bottom: 1.5rem; }
+.eyebrow { margin: 0 0 .4rem; color: #667085; font-size: .72rem; font-weight: 700; letter-spacing: .09em; }
+h1 { margin: 0; color: #172033; font-size: clamp(1.65rem, 3vw, 2rem); letter-spacing: -.035em; }
+.page-description { margin: .4rem 0 0; color: #667085; font-size: .95rem; }
+.profile-card { overflow: hidden; border: 1px solid #e7eaf0; border-radius: .85rem; background: #fff; box-shadow: 0 1px 3px rgb(16 24 40 / 4%); }
+.profile-heading { display: flex; align-items: center; gap: .85rem; padding: 1.15rem 1.25rem; }
+.profile-icon { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border: 1px solid #e5e9f7; border-radius: .7rem; background: #f5f7ff; color: #455dcc; }
+.profile-icon svg { width: 23px; height: 23px; }
+.profile-heading h2 { margin: 0; color: #273247; font-size: .96rem; font-weight: 650; }
+.profile-heading p { margin: .25rem 0 0; color: #7b8495; font-size: .82rem; }
+.profile-divider { height: 1px; background: #eef0f3; }
+.profile-field { display: grid; gap: .4rem; padding: 1.1rem 1.25rem 1.25rem; }
+.field-label { color: #667085; font-size: .78rem; font-weight: 500; }
+.field-value { color: #273247; font-size: .95rem; font-weight: 600; overflow-wrap: anywhere; }
+@media (max-width: 520px) { .page-heading { margin-bottom: 1rem; } .profile-heading { padding: 1rem; } .profile-field { padding-inline: 1rem; } }

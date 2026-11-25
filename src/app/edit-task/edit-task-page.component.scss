@@ -1,0 +1,23 @@
+.page-card { width: min(100%, 680px); padding: clamp(1.1rem, 3vw, 1.75rem); border: 1px solid #e7eaf0; border-radius: .85rem; background: #fff; box-shadow: 0 2px 8px rgb(16 24 40 / 4%); }
+.back-link { display: inline-flex; align-items: center; gap: .4rem; color: #667085; font-size: .84rem; font-weight: 500; text-decoration: none; }
+.back-link:hover { color: #3447a5; }
+.form-heading { margin: 1.2rem 0 1.5rem; }
+.eyebrow { margin: 0 0 .4rem; color: #98a2b3; font-size: .7rem; font-weight: 700; letter-spacing: .09em; }
+h1 { margin: 0; color: #172033; font-size: 1.55rem; letter-spacing: -.025em; }
+.form-heading > p:last-child { margin: .4rem 0 0; color: #667085; font-size: .9rem; }
+form { display: grid; gap: 1.15rem; }
+.field-group { display: grid; gap: .45rem; }
+label { color: #344054; font-size: .85rem; font-weight: 600; }
+input, select { width: 100%; min-width: 0; min-height: 43px; padding: .65rem .75rem; border: 1px solid #d0d5dd; border-radius: .5rem; background: #fff; color: #172033; font: inherit; font-size: .9rem; }
+input:focus, select:focus { border-color: #8098f9; outline: 0; box-shadow: 0 0 0 3px rgb(68 96 220 / 12%); }
+input.invalid { border-color: #d92d20; }
+input.invalid:focus { box-shadow: 0 0 0 3px rgb(217 45 32 / 10%); }
+.validation-message { color: #b42318; font-size: .78rem; }
+.loading-message { color: #667085; }
+.actions { display: flex; justify-content: flex-end; align-items: center; gap: .65rem; margin-top: .35rem; padding-top: 1rem; border-top: 1px solid #eef0f3; }
+.cancel-button, .save-button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding: .6rem .9rem; border-radius: .5rem; font: inherit; font-size: .86rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+.cancel-button { border: 1px solid #dfe3eb; background: #fff; color: #475467; }
+.cancel-button:hover { background: #f8f9fb; }
+.save-button { border: 1px solid #3158c8; background: #3158c8; color: #fff; }
+.save-button:hover { border-color: #284bb1; background: #284bb1; }
+@media (max-width: 480px) { .actions { display: grid; grid-template-columns: 1fr 1fr; } }

@@ -1,0 +1,11 @@
+<header class="top-bar">
+  <a class="brand" routerLink="/tasks">TaskFlow</a>
+  <nav aria-label="Main navigation">
+    <a routerLink="/tasks" routerLinkActive="active" ariaCurrentWhenActive="page">Tasks</a>
+    <a routerLink="/settings" routerLinkActive="active" ariaCurrentWhenActive="page">Settings</a>
+  </nav>
+  <div class="user-summary">
+    <span>{{ state.userName() }}</span>
+    <span class="overdue">{{ state.overdueCount() }} overdue</span>
+  </div>
+</header>

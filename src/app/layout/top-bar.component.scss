@@ -1,0 +1,14 @@
+:host { display: block; }
+.top-bar { display: flex; align-items: center; gap: 2rem; padding: 1rem clamp(1rem, 4vw, 2.5rem); background: #fff; border-bottom: 1px solid #e4e7ec; }
+.brand { color: #2457d6; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+nav { display: flex; gap: 1rem; }
+nav a { color: #667085; text-decoration: none; }
+nav a.active { color: #2457d6; font-weight: 600; }
+.user-summary { display: flex; align-items: center; gap: 1rem; margin-left: auto; font-weight: 500; }
+.overdue { color: #b42318; font-size: .9rem; }
+@media (max-width: 520px) {
+  .top-bar { flex-wrap: wrap; gap: .7rem 1rem; padding-block: .8rem; }
+  nav { order: 3; width: 100%; padding-top: .55rem; border-top: 1px solid #f0f1f4; }
+  .user-summary { gap: .6rem; font-size: .82rem; }
+  .overdue { font-size: .78rem; }
+}

@@ -1,0 +1,72 @@
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">WORKSPACE</p>
+    <h1>My Tasks</h1>
+    <p class="subheading">Manage and track your daily work.</p>
+  </div>
+  <div class="total-card" aria-label="Total tasks">
+    <span class="total-number">{{ state.tasks().length }}</span>
+    <span class="total-label">Total tasks</span>
+  </div>
+</section>
+
+@if (state.isLoading()) {
+  <section class="loading-card" role="status" aria-live="polite">
+    <span class="loading-mark" aria-hidden="true"></span>
+    <span>Loading your tasks…</span>
+  </section>
+} @else {
+  <section class="controls-card" aria-label="Task controls">
+    <label class="search-box">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8" />
+        <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+      <span class="visually-hidden">Search tasks</span>
+      <input
+        type="search"
+        placeholder="Search tasks by title or description…"
+        [value]="searchText()"
+        (input)="updateSearch($any($event.target).value)"
+      />
+      @if (searchText()) {
+        <button class="clear-search" type="button" aria-label="Clear search" (click)="updateSearch('')">×</button>
+      }
+    </label>
+
+    <div class="control-bottom">
+      <div class="tabs" role="tablist" aria-label="Filter tasks by status">
+        <button type="button" role="tab" [attr.aria-selected]="selectedTab() === 'All'" [class.active]="selectedTab() === 'All'" (click)="setTab('All')">
+          All <span>{{ state.tasks().length }}</span>
+        </button>
+        <button type="button" role="tab" [attr.aria-selected]="selectedTab() === 'Open'" [class.active]="selectedTab() === 'Open'" (click)="setTab('Open')">
+          Open <span>{{ openCount() }}</span>
+        </button>
+        <button type="button" role="tab" [attr.aria-selected]="selectedTab() === 'Done'" [class.active]="selectedTab() === 'Done'" (click)="setTab('Done')">
+          Done <span>{{ doneCount() }}</span>
+        </button>
+      </div>
+      <button
+        class="view-toggle"
+        type="button"
+        [attr.aria-pressed]="compactView()"
+        (click)="toggleCompactView()"
+      >
+        <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+          <path d="M3.5 5h13M3.5 10h13M3.5 15h13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+        {{ compactView() ? 'Comfortable view' : 'Compact view' }}
+      </button>
+    </div>
+  </section>
+
+  <div class="task-layout">
+    <app-task-list
+      [tasks]="visibleTasks()"
+      [selectedTaskId]="selectedTaskId()"
+      [compact]="compactView()"
+      (taskSelected)="selectTask($event)"
+    />
+    <app-task-details [task]="selectedTask()" (markDone)="markTaskDone($event)" />
+  </div>
+}
