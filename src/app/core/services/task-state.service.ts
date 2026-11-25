@@ -4,7 +4,7 @@ import { TaskService } from './task.service';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStateService {
-  private readonly tasksState = signal<Task[]>([]);
+  private readonly tasksState = signal<ReadonlyArray<Task>>([]);
   private readonly loadingState = signal(false);
   private readonly userNameState = signal('Jordan Lee');
 
@@ -22,7 +22,8 @@ export class TaskStateService {
   async loadTasks(): Promise<void> {
     this.loadingState.set(true);
     try {
-      this.tasksState.set(await this.taskService.getTasks());
+      const loadedTasks = await this.taskService.getTasks();
+      this.tasksState.set(loadedTasks.map((task) => ({ ...task })));
     } finally {
       this.loadingState.set(false);
     }

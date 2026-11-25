@@ -30,11 +30,25 @@ The application uses mock task data and has no backend.
 
 ```text
 TaskFlow/
+├── .editorconfig
+├── .gitignore
+├── .prettierrc
+├── .vscode/
+│   ├── extensions.json
+│   ├── launch.json
+│   ├── mcp.json
+│   └── tasks.json
 ├── angular.json
 ├── package.json
 ├── package-lock.json
 ├── README.md
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.spec.json
+├── public/
+│   └── favicon.ico
 └── src/
+    ├── index.html
     ├── main.ts
     ├── styles.scss
     └── app/
@@ -62,6 +76,8 @@ TaskFlow/
         └── settings/
             └── settings-page.component.{ts,html,scss}
 ```
+
+Generated dependency, build-output and cache folders (`node_modules/`, `dist/`, and `.angular/`) are omitted from this source-focused tree.
 
 | Area | Responsibility |
 |---|---|
@@ -133,6 +149,8 @@ The table uses the assessment’s state categories: **Local UI, URL, Server, For
 ### State ownership and update flow
 
 `TaskStateService` keeps its writable task, loading, and username signals private and exposes read-only signal APIs with `asReadonly()`. Shared task updates go through service methods such as `markTaskDone()` and `updateTask()`; current components do not write to the service’s private signals.
+
+The task collection is exposed as `ReadonlyArray<Task>`, and every property in the `Task` model is declared `readonly`. This prevents consumers from changing the collection or task fields through the exposed signal at the TypeScript level. Task loading copies the returned tasks into a new array of new objects. `updateTask()` creates a new array and a new object for the task being changed, preserving immutable update behavior.
 
 `TaskService` returns 10 mock tasks after a 650 ms delay to demonstrate the loading state. `TaskStateService.overdueCount` is a `computed()` value: it counts tasks with a due date before today whose status is not Done. Marking a task Done or editing its date/status updates the task signal, which causes the computed count to recalculate.
 

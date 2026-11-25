@@ -1,10 +1,10 @@
 export type TaskStatus = 'Open' | 'Done';
 
 export interface Task {
-  id: string;
-  title: string;
-  description: string;
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
   /** Date-only value in YYYY-MM-DD format. */
-  dueDate: string;
-  status: TaskStatus;
+  readonly dueDate: string;
+  readonly status: TaskStatus;
 }
